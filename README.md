@@ -1,2 +1,3 @@
-# Angular-Course
+# Angular Course
+
  Lab Tasks Solutions
