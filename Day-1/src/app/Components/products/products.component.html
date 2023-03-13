@@ -1,4 +1,36 @@
-<h1>{{product.name}}</h1>
-<p>Price: {{product.price}}</p>
-<p>Remaining Quantity: {{product.quantity}}</p>
-<img src="{{product.imageUrl}}" class="img-fluid" width="300">
+<h1>{{store.name}}</h1>
+<img [src]="store.logoUrl" *ngIf="isLogoShown" class="img-fluid" width="300">
+<h3 *ngIf="isDiscountElementShown">We offer an explicit discount of {{discount}}%</h3>
+<br>
+<h3>Purchase Date: {{purchaseDate | date : 'long' }}</h3>
+<table class="table m-2">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Buy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let prd of productList;let i=index">
+            <tr *ngIf="prd.quantity > 0"
+                [ngStyle]="{'background-color':(prd.quantity <= 1) ? 'lightyellow' : 'lightblue', 'color':(prd.quantity == 0) ? 'red' : 'blue'}">
+                <td>{{i+1}}</td>
+                <td>{{prd.name | uppercase}}</td>
+                <td><img [src]="prd.imageUrl" class="img-fluid" width="190" height="150"></td>
+                <td>{{prd.quantity}}</td>
+                <td>{{prd.price | currency:'USD'}}</td>
+
+                <td><button class="btn btn-danger" [disabled]="prd.quantity == 0" (click)="prd.quantity = prd.quantity - 1">Buy</button></td>
+            </tr>
+        </ng-container>
+
+    </tbody>
+</table>
+
+<br>
+<h2 *ngIf="!isLogoShown">Thanks for purchasing from our Store, {{clientName}}</h2>
+<button class="btn btn-primary" (click)="toggleLogoVisibility()">Toggle Logo</button>
