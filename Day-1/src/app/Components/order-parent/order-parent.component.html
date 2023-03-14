@@ -1,0 +1,34 @@
+<div>
+    <label for="cat">Select Category:</label>
+    <select name="cat" id="cat" class="form-control" [(ngModel)]="selectedCatId">
+        <option value="0">All</option>
+        <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+    </select>
+</div>
+
+<app-products [receivedCatID]="selectedCatId" (newCartItemEvent)="addnewCartItem($event)"
+    (totalPriceEvent)="totalPrice($event)"></app-products>
+<h1>Cart Total: {{totalPriceChanged}}</h1>
+
+<table class="table m-2">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Count</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let item of cartList">
+            <tr *ngIf="item.Count > 0">
+                <td>{{item.product.name| uppercase}}</td>
+                <td>{{item.product.price | currency:'USD'}}</td>
+                <td>{{item.Count}}</td>
+                <td>{{item.Count * item.product.price}}</td>
+                <td><button class="btn btn-danger" (click)="removeItemFromCart(item)">Delete</button></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

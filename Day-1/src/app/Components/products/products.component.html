@@ -11,6 +11,7 @@
             <th scope="col">Image</th>
             <th scope="col">Quantity</th>
             <th scope="col">Price</th>
+            <th scope="col">Count</th>
             <th scope="col">Buy</th>
         </tr>
     </thead>
@@ -24,7 +25,9 @@
                 <td>{{prd.quantity}}</td>
                 <td>{{prd.price | currency:'USD'}}</td>
 
-                <td><button class="btn btn-danger" [disabled]="prd.quantity == 0" (click)="prd.quantity = prd.quantity - 1">Buy</button></td>
+                <td><input type="number" name="count" id="count" value="1" class="form-control" #itemsCount></td>
+                <td><button class="btn btn-danger" [disabled]="prd.quantity == 0"
+                        (click)="updateTotalPrice(prd, itemsCount.value)">Buy</button></td>
             </tr>
         </ng-container>
 

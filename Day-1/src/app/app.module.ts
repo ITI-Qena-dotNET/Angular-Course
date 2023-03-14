@@ -8,6 +8,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { SidemenuComponent } from './Components/sidemenu/sidemenu.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { FormsModule } from '@angular/forms';
+import { OrderParentComponent } from './Components/order-parent/order-parent.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     SidemenuComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrderParentComponent
   ],
   imports: [
     BrowserModule,
