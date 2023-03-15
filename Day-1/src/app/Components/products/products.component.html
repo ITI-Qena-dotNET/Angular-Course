@@ -16,18 +16,21 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let prd of productList;let i=index">
+        <ng-container *ngFor="let prd of prdListOfCat;let i=index">
             <tr *ngIf="prd.quantity > 0"
                 [ngStyle]="{'background-color':(prd.quantity <= 1) ? 'lightyellow' : 'lightblue', 'color':(prd.quantity == 0) ? 'red' : 'blue'}">
                 <td>{{i+1}}</td>
                 <td>{{prd.name | uppercase}}</td>
-                <td><img [src]="prd.imageUrl" class="img-fluid" width="190" height="150"></td>
+                <td><img [src]="prd.imageUrl" class="img-fluid" width="190" height="150" BorderStyle></td>
                 <td>{{prd.quantity}}</td>
                 <td>{{prd.price | currency:'USD'}}</td>
 
                 <td><input type="number" name="count" id="count" value="1" class="form-control" #itemsCount></td>
-                <td><button class="btn btn-danger" [disabled]="prd.quantity == 0"
-                        (click)="updateTotalPrice(prd, itemsCount.value)">Buy</button></td>
+                <td>
+                    <button class="btn btn-info" (click)="showProductDetails(prd.id)">Details</button>
+                    <button class="btn btn-danger" [disabled]="prd.quantity == 0"
+                        (click)="updateTotalPrice(prd, itemsCount.value)">Buy</button>
+                </td>
             </tr>
         </ng-container>
 

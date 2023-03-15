@@ -1,14 +1,12 @@
 <app-header></app-header>
 <div class="container-fluid my-2">
   <div class="row">
-    <div class="col-3">
+    <div class="col-2">
       <app-sidemenu></app-sidemenu>
     </div>
-    <div class="col-9">
-      <app-order-parent></app-order-parent>
+    <div class="col-10">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
-
-<router-outlet></router-outlet>

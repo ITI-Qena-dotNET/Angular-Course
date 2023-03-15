@@ -5,6 +5,9 @@
         <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
     </select>
 </div>
+<div>
+    <h2>National ID: {{nationalID | nationalId:"DD"}}</h2>
+</div>
 
 <app-products [receivedCatID]="selectedCatId" (newCartItemEvent)="addnewCartItem($event)"
     (totalPriceEvent)="totalPrice($event)"></app-products>

@@ -1,0 +1,11 @@
+<div class="card mt-3" style="width:50rem;" BorderStyle="brown">
+    <img [src]="prod?.imageUrl" height="200px" width="300px" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Name: {{prod?.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted ">Price: {{prod?.price}}</h6>
+        <h5 class="card-title">Quantity: {{prod?.quantity}}</h5>
+    </div>
+</div>
+<div>
+    <button class="btn btn-primary" (click)="navigateBack()">Go back</button>
+</div>

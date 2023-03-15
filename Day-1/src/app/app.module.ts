@@ -9,6 +9,11 @@ import { SidemenuComponent } from './Components/sidemenu/sidemenu.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { FormsModule } from '@angular/forms';
 import { OrderParentComponent } from './Components/order-parent/order-parent.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { BorderStyleDirective } from './Directives/border-style.directive';
+import { HomeComponent } from './Components/home/home.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
+import { NationalIdPipe } from './Pipes/national-id.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { OrderParentComponent } from './Components/order-parent/order-parent.com
     FooterComponent,
     SidemenuComponent,
     ProductsComponent,
-    OrderParentComponent
+    OrderParentComponent,
+    NotFoundComponent,
+    BorderStyleDirective,
+    HomeComponent,
+    ProductDetailsComponent,
+    NationalIdPipe
   ],
   imports: [
     BrowserModule,

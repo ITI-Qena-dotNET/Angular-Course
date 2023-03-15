@@ -11,6 +11,7 @@ export class OrderParentComponent {
   selectedCatId: number = 0;
   catList: ICategory[];
   totalPriceChanged: number = 0;
+  nationalID: string = "29909011509345";
 
   cartList: CartItem[] = [];
 
