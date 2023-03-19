@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IProduct } from '../Models/iproduct';
 
 @Injectable({
@@ -22,7 +23,6 @@ export class ProductService {
     return this.productList;
   }
   
-  // getProductsByCatID
   getProductsByCatID(catid: number): IProduct[] {
     if (catid == 0) {
       return this.getAllProducts();
@@ -32,8 +32,9 @@ export class ProductService {
     }
   }
 
-  // object of iproduct
   getProductByID(prodId: number): IProduct | undefined {
     return this.productList.find(prd => prd.id == prodId)
   }
+
+
 }

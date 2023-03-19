@@ -1,0 +1,28 @@
+<form (ngSubmit)="addNew()">
+    <div class="mb-3">
+        <label for="prodID" class="form-label">Product ID</label>
+        <input #prodNameInput type="number" class="form-control" name="prodID" id="prodID" [(ngModel)]="product.id" disabled>
+    </div>
+    <div class="mb-3">
+        <label for="prodName" class="form-label">Product Name</label>
+        <input #prodNameInput type="text" class="form-control" name="prodName" id="prodName" [(ngModel)]="product.name">
+    </div>
+    <div class="mb-3">
+        <label for="prodQuantity" class="form-label">Quantity</label>
+        <input type="number" class="form-control" name="prodQuantity" id="prodQuantity" required [(ngModel)]="product.quantity">
+    </div>
+    <div class="mb-3">
+        <label for="prodPrice" class="form-label">Price</label>
+        <input type="number" class="form-control" name="prodPrice" id="prodPrice" required [(ngModel)]="product.price">
+    </div>
+    <div class="mb-3">
+        <label for="prodCategory" class="form-label">Category</label>
+        <select class="form-control" name="prodCategory" id="prodCategory" required [(ngModel)]="product.categoryId">
+            <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<h2>{{product | json}}</h2>
+<h2>{{prodNameInput.className}}</h2>

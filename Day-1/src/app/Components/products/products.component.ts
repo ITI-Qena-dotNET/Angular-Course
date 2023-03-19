@@ -4,7 +4,7 @@ import { CartItem } from 'src/app/Models/cart-item';
 import { DiscountOffers } from 'src/app/Models/discount-offers';
 import { IProduct } from 'src/app/Models/iproduct';
 import { Store } from 'src/app/Models/store';
-import { ProductService } from 'src/app/Services/product.service';
+import { ProductApiService } from 'src/app/Services/product-api.service';
 
 @Component({
     selector: 'app-products',
@@ -32,7 +32,7 @@ export class ProductsComponent implements OnInit, OnChanges {
     @Output()
     newCartItemEvent: EventEmitter<CartItem>;
 
-    constructor(private productService: ProductService, private router: Router) {
+    constructor(private productApiService: ProductApiService, private router: Router) {
         this.store = new Store("My shop", ["Cairo", "Qena"], "https://previews.123rf.com/images/distrologo/distrologo1902/distrologo190200778/117610020-retail-store-logo-design-template-shopping-cart-logo-icon-design.jpg");
         this.clientName = "Youssef";
         this.purchaseDate = new Date();
@@ -43,12 +43,31 @@ export class ProductsComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.prdListOfCat = this.productService.getProductsByCatID(this.receivedCatID);
+        if (this.receivedCatID == 0) {
+            this.productApiService.getAllProducts().subscribe(data => {
+                this.prdListOfCat = data;
+            });
+        } else {
+            this.productApiService.getProductsByCatID(this.receivedCatID).subscribe(data => {
+                this.prdListOfCat = data;
+            });
+        }
     }
 
     async showProductDetails(prdID: number) {
         let result = await this.router.navigate(['Details', prdID]);
         console.log("Routing result is " + result ? "Success" : "Fail");
+    }
+
+    async editProductDetails(prdID: number) {
+        let result = await this.router.navigate(['Admin/NewProduct', prdID]);
+        console.log("Routing result is " + result ? "Success" : "Fail");
+    }
+
+    deleteProduct(prdID: number) {
+        this.productApiService.deleteProductByID(prdID).subscribe(data => {
+            window.location.reload()
+        });
     }
 
     updateTotalPrice(prd: IProduct, count: any) {

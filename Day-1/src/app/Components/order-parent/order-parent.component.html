@@ -7,6 +7,7 @@
 </div>
 <div>
     <h2>National ID: {{nationalID | nationalId:"DD"}}</h2>
+    <h2>Credit Card No. : {{"0000000000000000" | creditCard}}</h2>
 </div>
 
 <app-products [receivedCatID]="selectedCatId" (newCartItemEvent)="addnewCartItem($event)"

@@ -28,6 +28,8 @@
                 <td><input type="number" name="count" id="count" value="1" class="form-control" #itemsCount></td>
                 <td>
                     <button class="btn btn-info" (click)="showProductDetails(prd.id)">Details</button>
+                    <button class="btn btn-secondary" (click)="editProductDetails(prd.id)">Edit</button>
+                    <button class="btn btn-warning" (click)="deleteProduct(prd.id)">Delete</button>
                     <button class="btn btn-danger" [disabled]="prd.quantity == 0"
                         (click)="updateTotalPrice(prd, itemsCount.value)">Buy</button>
                 </td>

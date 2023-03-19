@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ProductService } from 'src/app/Services/product.service';
 import {Location} from '@angular/common';
+import { ProductApiService } from 'src/app/Services/product-api.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,16 +14,18 @@ export class ProductDetailsComponent implements OnInit {
   currentProdID: number = 0;
   prod: IProduct | undefined = undefined;
 
-  constructor(private activatedRoute: ActivatedRoute, private prdService: ProductService, private location: Location) { }
+  constructor(private activatedRoute: ActivatedRoute, private productApiService: ProductApiService, private location: Location) { }
 
   ngOnInit(): void {
     this.currentProdID = this.activatedRoute.snapshot.paramMap.get('prodId')
       ? Number(this.activatedRoute.snapshot.paramMap.get('prodId')) : 0;
     
-    let returnedPrd = this.prdService.getProductByID(this.currentProdID);
+    let returnedPrd = this.productApiService.getProductByID(this.currentProdID).subscribe(data => {
+      this.prod = data;
+    });
 
     if (returnedPrd) {
-      this.prod = returnedPrd;
+      //this.prod = returnedPrd;
     }
     else{
       alert("product not found")
